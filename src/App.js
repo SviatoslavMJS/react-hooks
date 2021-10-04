@@ -8,7 +8,6 @@ import { About } from "./pages/About";
 import { Home } from "./pages/Home";
 import { Profile } from "./pages/Profile";
 
-
 function App() {
   return (
     <GithubState>
