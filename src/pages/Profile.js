@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, Fragment } from "react"
 import { Link } from "react-router-dom"
+import { Repos } from "../components/Repos"
 import { GithubContext } from "../context/github/githubContext"
 
 export const Profile = ({ match }) => {
-
+    console.log("render")
     const { getUser, getRepos, loading, user, repos } = useContext(GithubContext)
     const urlName = match.params.name
 
@@ -27,7 +28,7 @@ export const Profile = ({ match }) => {
     return (
         <Fragment>
 
-            <Link to="/" className="btn btn-link">Home</Link>
+            <Link to="/" className="btn btn-link"><h5><span className="badge badge-success">{"<- Back"}</span></h5></Link>
             <div className="card mb-4">
                 <div className="card-body">
                     <div className="row">
@@ -50,7 +51,7 @@ export const Profile = ({ match }) => {
                             <a
                                 href={html_url}
                                 target="_blank"
-                                rel="noreferrer"
+                                rel="noreferrer noopener"
                                 className="btn btn-dark"
                             >Go to profile</a>
 
@@ -72,11 +73,13 @@ export const Profile = ({ match }) => {
                             <div className="badge badge-success">Subscribe : {following}</div>
                             <div className="badge badge-info">Repositories : {public_repos}</div>
                             <div className="badge badge-dark">Gists : {public_gists}</div>
-                            {repos.join()}
+
                         </div>
                     </div>
                 </div>
             </div>
+
+            <Repos repos={repos} />
 
         </Fragment>
     )
